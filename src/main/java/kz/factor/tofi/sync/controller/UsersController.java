@@ -1,14 +1,15 @@
 package kz.factor.tofi.sync.controller;
 
-import kz.factor.tofi.sync.dto.UsersDto;
+import kz.factor.tofi.sync.model.users.UsersDto;
 import kz.factor.tofi.sync.exception.ValidationException;
-import kz.factor.tofi.sync.service.UsersService;
+import kz.factor.tofi.sync.service.users.UsersService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -43,9 +44,9 @@ public class UsersController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteUsers(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteUsers(@PathVariable String id) {
         log.info("Handling delete user request: " + id);
-        usersService.deleteUser(id);
+        usersService.deleteUser(UUID.fromString(id));
         return ResponseEntity.ok().build();
     }
 

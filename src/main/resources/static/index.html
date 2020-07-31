@@ -63,7 +63,7 @@
                     '        <td>' + user.name + '</td>\n' +
                     '        <td>' + user.login + '</td>\n' +
                     '        <td>' + user.email + '</td>' +
-                    '        <td><button onclick="deleteUser(' + user.id + ')">Delete</button></td></tr>';
+                    '        <td><button onclick="deleteUser(\'' + user.id + '\')">Delete</button></td></tr>';
                 document.getElementById("usersList").innerHTML = html;
             }
         };
@@ -75,7 +75,7 @@
         var login = document.getElementById("search_field2").value;
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState === 4 && this.status === 200) {
                 var user = JSON.parse(this.responseText);
                 var html = '<tr>\n' +
                     '        <th>User id</th>\n' +
@@ -88,7 +88,7 @@
                     '        <td>' + user.name + '</td>\n' +
                     '        <td>' + user.login + '</td>\n' +
                     '        <td>' + user.email + '</td>' +
-                    '        <td><button onclick="deleteUser(' + user.id + ')">Delete</button></td></tr>';
+                    '        <td><button onclick="deleteUser(\'' + user.id + '\')">Delete</button></td></tr>';
                 document.getElementById("usersList").innerHTML = html;
             }
         };
@@ -97,9 +97,10 @@
     }
 
     function deleteUser(userId) {
+        console.log('user id', userId)
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState === 4 && this.status === 200) {
                 loadUsers();
             }
         }
@@ -123,7 +124,7 @@
     function loadUsers() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState === 4 && this.status === 200) {
                 var users = JSON.parse(this.responseText);
                 var html = '<tr>\n' +
                     '        <th>User id</th>\n' +
@@ -139,7 +140,7 @@
                         '        <td>' + user.name + '</td>\n' +
                         '        <td>' + user.login + '</td>\n' +
                         '        <td>' + user.email + '</td>' +
-                        '        <td><button onclick="deleteUser(' + user.id + ')">Delete</button></td></tr>';
+                        '        <td><button onclick="deleteUser(\'' + user.id + '\')">Delete</button></td></tr>';
 
                 }
                 document.getElementById("usersList").innerHTML = html;

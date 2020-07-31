@@ -1,21 +1,21 @@
-package kz.factor.tofi.sync.service;
+package kz.factor.tofi.sync.service.users;
 
-import kz.factor.tofi.sync.converters.UsersConverter;
-import kz.factor.tofi.sync.dto.UsersDto;
-import kz.factor.tofi.sync.entity.Users;
+import kz.factor.tofi.sync.model.users.UsersConverter;
+import kz.factor.tofi.sync.model.users.UsersDto;
+import kz.factor.tofi.sync.model.users.AppUsers;
 import kz.factor.tofi.sync.exception.ValidationException;
-import kz.factor.tofi.sync.repository.UsersRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
 
 @AllArgsConstructor
 @Service
-public class DefaultUsersService implements UsersService {
+public class UsersServiceImpl implements UsersService {
     private final UsersRepository usersRepository;
     private final UsersConverter usersConverter;
 
@@ -29,18 +29,18 @@ public class DefaultUsersService implements UsersService {
     @Override
     public UsersDto saveUser(UsersDto usersDto) throws ValidationException {
         validateUserDto(usersDto);
-        Users savedUser = usersRepository.save(usersConverter.fromUserDtoToUser(usersDto));
+        AppUsers savedUser = usersRepository.save(usersConverter.fromUserDtoToUser(usersDto));
         return usersConverter.fromUserToUserDto(savedUser);
     }
 
     @Override
-    public void deleteUser(Integer userId) {
+    public void deleteUser(UUID userId) {
         usersRepository.deleteById(userId);
     }
 
     @Override
     public UsersDto findByLogin(String login) {
-        Users users = usersRepository.findByLogin(login);
+        AppUsers users = usersRepository.findByLogin(login);
         if (users != null)
             return usersConverter.fromUserToUserDto(users);
         return null;
@@ -48,7 +48,7 @@ public class DefaultUsersService implements UsersService {
 
     @Override
     public UsersDto findByName(String name) {
-        Users users = usersRepository.findByName(name);
+        AppUsers users = usersRepository.findByName(name);
         if (users != null)
             return usersConverter.fromUserToUserDto(users);
         return null;
