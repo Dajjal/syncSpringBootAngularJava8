@@ -9,7 +9,6 @@ import java.util.UUID;
 @Builder
 public class UsersDto {
     private UUID id;
-    private String name;
     private String login;
     private String email;
     private String password;

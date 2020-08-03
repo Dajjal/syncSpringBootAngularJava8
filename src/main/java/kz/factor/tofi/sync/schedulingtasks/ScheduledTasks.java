@@ -1,8 +1,6 @@
 package kz.factor.tofi.sync.schedulingtasks;
 
 import lombok.extern.java.Log;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +13,11 @@ public class ScheduledTasks {
 
 //    private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
     @Scheduled(fixedRate = 5000)
     public void reportCurrentTime() {
-        log.info("Текущее время :" + dateFormat.format(new Date()));
+        log.info("Current Time :" + dateFormat.format(new Date()));
     }
 
 }

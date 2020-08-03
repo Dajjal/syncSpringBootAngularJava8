@@ -24,6 +24,10 @@ public class UsersServiceImpl implements UsersService {
             throw new ValidationException("Object user is null");
         if (isNull(usersDto.getLogin()) || usersDto.getLogin().isEmpty())
             throw new ValidationException("Login is empty");
+        if (isNull(usersDto.getEmail()) || usersDto.getEmail().isEmpty())
+            throw new ValidationException("Email is empty");
+        if (isNull(usersDto.getPassword()) || usersDto.getPassword().isEmpty())
+            throw new ValidationException("Password is empty");
     }
 
     @Override

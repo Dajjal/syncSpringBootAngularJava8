@@ -13,6 +13,7 @@ public interface UsersService {
     void deleteUser(UUID userId);
 
     UsersDto findByLogin(String login);
+
     List<UsersDto> findAll();
 
 }

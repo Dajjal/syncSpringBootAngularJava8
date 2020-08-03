@@ -1,7 +1,5 @@
 package kz.factor.tofi.sync.model.users;
 
-import kz.factor.tofi.sync.model.users.UsersDto;
-import kz.factor.tofi.sync.model.users.AppUsers;
 import org.springframework.stereotype.Component;
 
 @Component

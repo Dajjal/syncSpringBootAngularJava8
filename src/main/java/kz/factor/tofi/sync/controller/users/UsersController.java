@@ -1,9 +1,7 @@
-package kz.factor.tofi.sync.controller;
+package kz.factor.tofi.sync.controller.users;
 
-import kz.factor.tofi.sync.model.roles.AppRoles;
 import kz.factor.tofi.sync.model.users.UsersDto;
 import kz.factor.tofi.sync.exception.ValidationException;
-import kz.factor.tofi.sync.service.roles.RolesService;
 import kz.factor.tofi.sync.service.users.UsersService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -20,15 +18,14 @@ import java.util.UUID;
 public class UsersController {
 
     private final UsersService usersService;
-    private final RolesService rolesService;
 
     @PostMapping("/save")
-    public UsersDto saveUsers(@RequestBody UsersDto usersDto) throws ValidationException {
-        log.info("Handling save users: " + usersDto);
-        return usersService.saveUser(usersDto);
+    public UsersDto saveUsers(@RequestBody UsersDto model) throws ValidationException {
+        log.info("Handling save users: " + model);
+        return usersService.saveUser(model);
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/getAll")
     public List<UsersDto> findAllUsers() {
         log.info("Handling find all users request");
         return usersService.findAll();
@@ -45,12 +42,6 @@ public class UsersController {
         log.info("Handling delete user request: " + id);
         usersService.deleteUser(UUID.fromString(id));
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/getRoles")
-    public List<AppRoles> getRoles() {
-        log.info("Handling find all roles request");
-        return rolesService.findAll();
     }
 
 }

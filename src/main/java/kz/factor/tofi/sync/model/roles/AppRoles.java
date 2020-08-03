@@ -1,6 +1,5 @@
 package kz.factor.tofi.sync.model.roles;
 
-import kz.factor.tofi.sync.util.UUIDGenerator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
