@@ -35,9 +35,6 @@ public class AppUsers {
     private UUID id;
 
     @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
     private String login;
 
     @Column(nullable = false)

@@ -11,7 +11,6 @@ public class UsersConverter {
         users.setId(usersDto.getId());
         users.setEmail(usersDto.getEmail());
         users.setLogin(usersDto.getLogin());
-        users.setName(usersDto.getName());
         users.setPassword(usersDto.getPassword());
         return users;
     }
@@ -21,7 +20,6 @@ public class UsersConverter {
                 .id(users.getId())
                 .email(users.getEmail())
                 .login(users.getLogin())
-                .name(users.getName())
                 .build();
     }
 }

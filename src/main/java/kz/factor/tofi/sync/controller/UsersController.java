@@ -1,7 +1,9 @@
 package kz.factor.tofi.sync.controller;
 
+import kz.factor.tofi.sync.model.roles.AppRoles;
 import kz.factor.tofi.sync.model.users.UsersDto;
 import kz.factor.tofi.sync.exception.ValidationException;
+import kz.factor.tofi.sync.service.roles.RolesService;
 import kz.factor.tofi.sync.service.users.UsersService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -18,6 +20,7 @@ import java.util.UUID;
 public class UsersController {
 
     private final UsersService usersService;
+    private final RolesService rolesService;
 
     @PostMapping("/save")
     public UsersDto saveUsers(@RequestBody UsersDto usersDto) throws ValidationException {
@@ -37,17 +40,17 @@ public class UsersController {
         return usersService.findByLogin(login);
     }
 
-    @GetMapping("/findByName")
-    public UsersDto findByName(@RequestParam String name) {
-        log.info("Handling find by name request: " + name);
-        return usersService.findByName(name);
-    }
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteUsers(@PathVariable String id) {
         log.info("Handling delete user request: " + id);
         usersService.deleteUser(UUID.fromString(id));
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/getRoles")
+    public List<AppRoles> getRoles() {
+        log.info("Handling find all roles request");
+        return rolesService.findAll();
     }
 
 }

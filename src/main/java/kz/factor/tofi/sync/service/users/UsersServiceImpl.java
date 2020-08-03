@@ -47,14 +47,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UsersDto findByName(String name) {
-        AppUsers users = usersRepository.findByName(name);
-        if (users != null)
-            return usersConverter.fromUserToUserDto(users);
-        return null;
-    }
-
-    @Override
     public List<UsersDto> findAll() {
         return usersRepository.findAll()
                 .stream()
