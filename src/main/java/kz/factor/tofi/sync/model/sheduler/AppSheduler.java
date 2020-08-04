@@ -22,6 +22,13 @@ public class AppSheduler {
     @Column(updatable = false, nullable = false)
     private UUID id;
 
+    @Column(nullable = false)
+    private String name_ru;
 
+    @Column(nullable = false)
+    private String name_kz;
+
+    @Column(nullable = false)
+    private String name_en;
 
 }

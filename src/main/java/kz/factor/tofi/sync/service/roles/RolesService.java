@@ -1,7 +1,10 @@
 package kz.factor.tofi.sync.service.roles;
 
 import kz.factor.tofi.sync.exception.ValidationException;
+import kz.factor.tofi.sync.model.kendo.DataSourceRequest;
+import kz.factor.tofi.sync.model.kendo.DataSourceResult;
 import kz.factor.tofi.sync.model.roles.AppRoles;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,4 +21,7 @@ public interface RolesService {
 
     List<AppRoles> findAll();
 
+    long count();
+
+    DataSourceResult get(DataSourceRequest request);
 }

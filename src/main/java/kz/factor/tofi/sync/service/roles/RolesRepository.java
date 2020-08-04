@@ -2,6 +2,7 @@ package kz.factor.tofi.sync.service.roles;
 
 import kz.factor.tofi.sync.model.roles.AppRoles;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.UUID;
 

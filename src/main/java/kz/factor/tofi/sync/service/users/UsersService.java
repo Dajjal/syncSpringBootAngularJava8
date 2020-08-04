@@ -1,5 +1,7 @@
 package kz.factor.tofi.sync.service.users;
 
+import kz.factor.tofi.sync.model.kendo.DataSourceRequest;
+import kz.factor.tofi.sync.model.kendo.DataSourceResult;
 import kz.factor.tofi.sync.model.users.UsersDto;
 import kz.factor.tofi.sync.exception.ValidationException;
 
@@ -16,4 +18,5 @@ public interface UsersService {
 
     List<UsersDto> findAll();
 
+    DataSourceResult get(DataSourceRequest request);
 }

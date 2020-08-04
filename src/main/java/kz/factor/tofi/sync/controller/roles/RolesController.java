@@ -1,6 +1,8 @@
 package kz.factor.tofi.sync.controller.roles;
 
 import kz.factor.tofi.sync.exception.ValidationException;
+import kz.factor.tofi.sync.model.kendo.DataSourceRequest;
+import kz.factor.tofi.sync.model.kendo.DataSourceResult;
 import kz.factor.tofi.sync.model.roles.AppRoles;
 import kz.factor.tofi.sync.service.roles.RolesService;
 import lombok.AllArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.UUID;
 @RequestMapping("/roles")
 @AllArgsConstructor
 @Log
+@CrossOrigin(value = "http://localhost:4200")
 public class RolesController {
 
     private final RolesService rolesService;
@@ -25,11 +28,23 @@ public class RolesController {
         return rolesService.saveRole(model);
     }
 
-    @GetMapping("/getAll")
-    public List<AppRoles> getAllRoles() {
+    @PostMapping("/getAll")
+    public DataSourceResult getAllRoles(@RequestBody DataSourceRequest request) {
         log.info("Handling find all roles request");
-        return rolesService.findAll();
+//        request.toDataSourceResult()
+        DataSourceResult result = new DataSourceResult();
+        result.setData(rolesService.findAll());
+        result.setTotal(rolesService.count());
+        return result;
+//        return rolesService.findAll();
     }
+
+    @PostMapping("/get")
+    public @ResponseBody DataSourceResult get(@RequestBody DataSourceRequest request) {
+        return rolesService.get(request);
+    }
+
+
 
     @GetMapping("/findByName")
     public AppRoles findByName(@RequestParam String name) {

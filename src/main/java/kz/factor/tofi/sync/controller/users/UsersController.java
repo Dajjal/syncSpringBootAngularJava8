@@ -1,5 +1,7 @@
 package kz.factor.tofi.sync.controller.users;
 
+import kz.factor.tofi.sync.model.kendo.DataSourceRequest;
+import kz.factor.tofi.sync.model.kendo.DataSourceResult;
 import kz.factor.tofi.sync.model.users.UsersDto;
 import kz.factor.tofi.sync.exception.ValidationException;
 import kz.factor.tofi.sync.service.users.UsersService;
@@ -15,6 +17,7 @@ import java.util.UUID;
 @RequestMapping("/users")
 @AllArgsConstructor
 @Log
+@CrossOrigin
 public class UsersController {
 
     private final UsersService usersService;
@@ -25,10 +28,9 @@ public class UsersController {
         return usersService.saveUser(model);
     }
 
-    @GetMapping("/getAll")
-    public List<UsersDto> findAllUsers() {
-        log.info("Handling find all users request");
-        return usersService.findAll();
+    @PostMapping("/get")
+    public @ResponseBody DataSourceResult get(@RequestBody DataSourceRequest request) {
+        return usersService.get(request);
     }
 
     @GetMapping("/findByLogin")
